@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Iframe with Form Inputs</title>
+    <style>
+        /* Hide the iframe */
+        #hiddenIframe {
+            display: none;
+        }
+    </style>
+    <script>
+        function openIframe() {
+            var user = document.getElementById('user').value;
+            var key = document.getElementById('key').value;
+            var title = encodeURIComponent(document.getElementById('title').value);
+            var message = encodeURIComponent(document.getElementById('message').value);
+            var image = encodeURIComponent(document.getElementById('image').value);
+            var url = encodeURIComponent(document.getElementById('url').value);
+            var sound = document.getElementById('sound').value;
+            var critical = document.getElementById('critical').value;
+            var critical_volume = document.getElementById('critical_volume').value;
+            var reminder = document.getElementById('reminder').value;
+            
+            var apiUrl = `https://api.pushmealert.com?user=${user}&key=${key}&title=${title}&message=${message}&image=${image}&url=${url}&sound=${sound}&critical=${critical}&critical_volume=${critical_volume}&reminder=${reminder}`;
+            
+            document.getElementById('hiddenIframe').src = apiUrl;
+        }
+    </script>
+</head>
+<body>
+    <form id="apiForm">
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user"><br><br>
+        <label for="key">Key:</label>
+        <input type="text" id="key" name="key"><br><br>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message"><br><br>
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image"><br><br>
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url"><br><br>
+        <label for="sound">Sound:</label>
+        <input type="text" id="sound" name="sound"><br><br>
+        <label for="critical">Critical:</label>
+        <input type="text" id="critical" name="critical"><br><br>
+        <label for="critical_volume">Critical Volume:</label>
+        <input type="text" id="critical_volume" name="critical_volume"><br><br>
+        <label for="reminder">Reminder:</label>
+        <input type="text" id="reminder" name="reminder"><br><br>
+    </form>
+    <button onclick="openIframe()">Click me</button>
+    <iframe id="hiddenIframe"></iframe>
+</body>
+</html>
